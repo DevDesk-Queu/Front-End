@@ -49,7 +49,7 @@ const Register = () => {
     axios
       .post('https://devdeskbackend.herokuapp.com/api/auth/register', values)
       .then(res => console.log(res))
-      .get(err => console.log(err))
+      .get(err => console.log(err.response))
   }
 
   return (
