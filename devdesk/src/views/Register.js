@@ -92,6 +92,21 @@ const Register = () => {
                 autoComplete='current-password'
               />
             </Grid>
+            <Grid item xs={12}>
+              <FormControl variant='outlined' className={classes.formControl}>
+                <Select
+                  label='Role'
+                  value={values.role}
+                  onChange={e => handleChange(e)}
+                  name='role'
+                >
+                  <option value='' />
+                  <option value='react'>React</option>
+                  <option value='node'>Node</option>
+                  <option value='java'>Java</option>
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
           <Button
             type='submit'
@@ -136,7 +151,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
