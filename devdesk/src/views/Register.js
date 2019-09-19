@@ -31,6 +31,8 @@ const Register = () => {
     }))
   }
 
+  // handleSubmit to POST user
+
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -92,6 +94,7 @@ const Register = () => {
 
 export default Register
 
+// Set style theme for the form components
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
