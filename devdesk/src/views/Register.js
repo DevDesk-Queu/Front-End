@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 
 // Form Components
@@ -18,8 +18,9 @@ import Select from '@material-ui/core/Select'
 const Register = () => {
   // Variable for the styles
   const classes = useStyles()
+
   // label items to test
-  const inputLabel = React.useRef(null)
+  const inputLabel = useRef(null)
   const [labelWidth, setLabelWidth] = React.useState(0)
   useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth)
@@ -45,6 +46,10 @@ const Register = () => {
   const handleSubmit = e => {
     e.preventDefault()
     console.log(values)
+    axios
+      .post('https://devdeskbackend.herokuapp.com/api/auth/register', values)
+      .then(res => console.log(res))
+      .get(err => console.log(err))
   }
 
   return (
@@ -108,7 +113,6 @@ const Register = () => {
                 value={values.role}
                 onChange={e => handleChange(e)}
                 name='role'
-                required
                 labelWidth={labelWidth}
               >
                 <option value='' />
