@@ -44,12 +44,16 @@ const Register = () => {
         <Typography component='h1' variant='h5'>
           Register
         </Typography>
+
+        {/* Start of form */}
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 name='fullName'
                 variant='outlined'
+                value={values.fullName}
+                onChange={handleChange}
                 required
                 fullWidth
                 label='Full Name'
@@ -59,6 +63,8 @@ const Register = () => {
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
+                value={values.email}
+                onChange={handleChange}
                 required
                 fullWidth
                 label='Email Address'
@@ -69,6 +75,8 @@ const Register = () => {
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
+                value={values.password}
+                onChange={handleChange}
                 required
                 fullWidth
                 name='password'
