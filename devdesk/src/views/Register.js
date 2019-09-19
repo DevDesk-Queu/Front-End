@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 // Form Components
@@ -18,6 +18,12 @@ import Select from '@material-ui/core/Select'
 const Register = () => {
   // Variable for the styles
   const classes = useStyles()
+  // label items to test
+  const inputLabel = React.useRef(null)
+  const [labelWidth, setLabelWidth] = React.useState(0)
+  useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth)
+  }, [])
 
   // Hook for the form
   const [values, setValues] = useState({
@@ -76,7 +82,7 @@ const Register = () => {
                 fullWidth
                 label='Email Address'
                 name='email'
-                autoComplete='email'
+                type='email'
               />
             </Grid>
             <Grid item xs={12}>
@@ -89,24 +95,28 @@ const Register = () => {
                 name='password'
                 label='Password'
                 type='password'
-                autoComplete='current-password'
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControl variant='outlined' className={classes.formControl}>
-                <Select
-                  label='Role'
-                  value={values.role}
-                  onChange={e => handleChange(e)}
-                  name='role'
-                >
-                  <option value='' />
-                  <option value='react'>React</option>
-                  <option value='node'>Node</option>
-                  <option value='java'>Java</option>
-                </Select>
-              </FormControl>
-            </Grid>
+            <FormControl
+              variant='outlined'
+              className={classes.formControl}
+              fullWidth
+              required
+            >
+              <InputLabel ref={inputLabel}>Role</InputLabel>
+              <Select
+                value={values.role}
+                onChange={e => handleChange(e)}
+                name='role'
+                required
+                labelWidth={labelWidth}
+              >
+                <option value='' />
+                <option value='react'>React</option>
+                <option value='node'>Node</option>
+                <option value='java'>Java</option>
+              </Select>
+            </FormControl>
           </Grid>
           <Button
             type='submit'
