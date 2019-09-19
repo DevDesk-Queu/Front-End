@@ -26,13 +26,17 @@ const Register = () => {
 
   // handleChange to set state
   const handleChange = event => {
-    setValues(oldValues => ({
-      ...oldValues,
+    setValues({
+      ...values,
       [event.target.name]: event.target.value,
-    }))
+    })
   }
 
   // handleSubmit to POST user
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(values)
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -46,14 +50,14 @@ const Register = () => {
         </Typography>
 
         {/* Start of form */}
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 name='fullName'
                 variant='outlined'
                 value={values.fullName}
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
                 required
                 fullWidth
                 label='Full Name'
@@ -64,7 +68,7 @@ const Register = () => {
               <TextField
                 variant='outlined'
                 value={values.email}
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
                 required
                 fullWidth
                 label='Email Address'
@@ -76,7 +80,7 @@ const Register = () => {
               <TextField
                 variant='outlined'
                 value={values.password}
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
                 required
                 fullWidth
                 name='password'
