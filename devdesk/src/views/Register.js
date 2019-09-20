@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
@@ -21,7 +21,7 @@ const Register = () => {
 
   // label items to test
   const inputLabel = useRef(null)
-  const [labelWidth, setLabelWidth] = React.useState(0)
+  const [labelWidth, setLabelWidth] = useState(0)
   useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth)
   }, [])
@@ -45,11 +45,11 @@ const Register = () => {
   // handleSubmit to POST user
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(values)
-    axios
-      .post('https://devdeskbackend.herokuapp.com/api/auth/register', values)
+    // console.log(values)
+    axios()
+      .post('/auth/register', values)
       .then(res => console.log(res))
-      .get(err => console.log(err.response))
+      .catch(err => console.log(err.response))
   }
 
   return (
