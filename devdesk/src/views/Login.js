@@ -48,7 +48,7 @@ const Login = () => {
           <AccountCircleIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Sign In
+          Log In
         </Typography>
 
         {/* Start of form */}
@@ -86,7 +86,7 @@ const Login = () => {
             color='secondary'
             className={classes.submit}
           >
-            Sign Up
+            Log In
           </Button>
         </form>
       </div>
