@@ -13,6 +13,33 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
 const Login = () => {
+  // Variable for the styles
+  const classes = useStyles()
+
+  // Hook for the form
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  })
+
+  // handleChange to set state
+  const handleChange = event => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  // handleSubmit to POST user
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(user)
+    // axios()
+    //   .post('/auth/register', values)
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err.response))
+  }
+
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -21,7 +48,7 @@ const Login = () => {
           <AccountCircleIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Register
+          Sign In
         </Typography>
 
         {/* Start of form */}
@@ -30,7 +57,7 @@ const Login = () => {
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
-                value={values.email}
+                value={user.email}
                 onChange={e => handleChange(e)}
                 required
                 fullWidth
@@ -42,7 +69,7 @@ const Login = () => {
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
-                value={values.password}
+                value={user.password}
                 onChange={e => handleChange(e)}
                 required
                 fullWidth
