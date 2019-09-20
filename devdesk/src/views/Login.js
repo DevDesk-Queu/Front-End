@@ -33,11 +33,11 @@ const Login = () => {
   // handleSubmit to POST user
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(user)
-    // axios()
-    //   .post('/auth/register', values)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err.response))
+    // console.log(user)
+    axios()
+      .post('/auth/login', user)
+      .then(res => console.log(res))
+      .catch(err => console.log(err.response))
   }
 
   return (
