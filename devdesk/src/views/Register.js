@@ -116,9 +116,8 @@ const Register = () => {
                 labelWidth={labelWidth}
               >
                 <option value='' />
-                <option value='react'>React</option>
-                <option value='node'>Node</option>
-                <option value='java'>Java</option>
+                <option value='user'>User</option>
+                <option value='helper'>Helper</option>
               </Select>
             </FormControl>
           </Grid>
