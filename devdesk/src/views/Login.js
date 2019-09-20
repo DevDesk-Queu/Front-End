@@ -36,7 +36,10 @@ const Login = () => {
     // console.log(user)
     axios()
       .post('/auth/login', user)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem('token', JSON.stringify(res.data.token))
+      })
       .catch(err => console.log(err.response))
   }
 
