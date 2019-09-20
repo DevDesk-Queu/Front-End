@@ -13,7 +13,58 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
 const Login = () => {
-  return <div></div>
+  return (
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <AccountCircleIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Register
+        </Typography>
+
+        {/* Start of form */}
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant='outlined'
+                value={values.email}
+                onChange={e => handleChange(e)}
+                required
+                fullWidth
+                label='Email Address'
+                name='email'
+                type='email'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant='outlined'
+                value={values.password}
+                onChange={e => handleChange(e)}
+                required
+                fullWidth
+                name='password'
+                label='Password'
+                type='password'
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='secondary'
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+        </form>
+      </div>
+    </Container>
+  )
 }
 
 export default Login
