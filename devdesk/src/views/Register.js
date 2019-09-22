@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+import { Link } from 'react-router-dom'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
@@ -130,6 +131,7 @@ const Register = () => {
           >
             Sign Up
           </Button>
+          <Link to='/'>Already registered? Log In!</Link>
         </form>
       </div>
     </Container>
