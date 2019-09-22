@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
       <Switch>
-        <Route path='/login' render={props => <Login {...props} />} />
+        <Route exact path='/' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
       </Switch>
     </div>

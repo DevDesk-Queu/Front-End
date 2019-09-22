@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+import { Link } from 'react-router-dom'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
@@ -91,6 +92,7 @@ const Login = () => {
           >
             Log In
           </Button>
+          <Link to='/register'>Need to register?</Link>
         </form>
       </div>
     </Container>
