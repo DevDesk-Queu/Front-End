@@ -11,8 +11,8 @@ function App() {
       <Switch>
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
-        <Route component={Login} />
         <Route path='/dashboard' />
+        <Route component={Login} />
       </Switch>
     </div>
   )
