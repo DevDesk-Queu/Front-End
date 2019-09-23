@@ -9,8 +9,9 @@ function App() {
   return (
     <div className='App'>
       <Switch>
-        <Route exact path='/' render={props => <Login {...props} />} />
+        <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
+        <Route component={Login} />
       </Switch>
     </div>
   )

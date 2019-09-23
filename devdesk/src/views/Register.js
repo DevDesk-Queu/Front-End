@@ -16,7 +16,9 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
-const Register = () => {
+const Register = props => {
+  // console.log(props)
+
   // Variable for the styles
   const classes = useStyles()
 
@@ -49,7 +51,11 @@ const Register = () => {
     // console.log(values)
     axios()
       .post('/auth/register', values)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        props.history.push('/login')
+      })
+
       .catch(err => console.log(err.response))
   }
 
