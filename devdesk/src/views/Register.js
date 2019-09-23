@@ -53,6 +53,7 @@ const Register = props => {
       .post('/auth/register', values)
       .then(res => {
         console.log(res)
+        localStorage.setItem('token', JSON.stringify(res.data.token))
         props.history.push('/login')
       })
 

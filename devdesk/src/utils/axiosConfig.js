@@ -6,7 +6,9 @@ export const axiosWithoutAuth = () => {
   })
 }
 
-export const axiosWithAuth = token => {
+export const axiosWithAuth = () => {
+  const token = localStorage.getItem('token')
+
   return axios.create({
     baseURL: 'https://devdeskbackend.herokuapp.com/api',
     headers: {
