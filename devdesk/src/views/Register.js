@@ -53,7 +53,7 @@ const Register = props => {
       .post('/auth/register', values)
       .then(res => {
         console.log(res)
-        localStorage.setItem('token', JSON.stringify(res.data.token))
+        // localStorage.setItem('token', JSON.stringify(res.data.token))
         props.history.push('/login')
       })
 
@@ -123,7 +123,7 @@ const Register = props => {
                 name='role'
                 labelWidth={labelWidth}
               >
-                <option value='' />
+                {/* <option value='' /> */}
                 <option value='user'>User</option>
                 <option value='helper'>Helper</option>
               </Select>
