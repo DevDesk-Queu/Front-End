@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+import { Link } from 'react-router-dom'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
@@ -12,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
-const Login = () => {
+const Login = props => {
   // Variable for the styles
   const classes = useStyles()
 
@@ -38,7 +39,8 @@ const Login = () => {
       .post('/auth/login', user)
       .then(res => {
         console.log(res.data)
-        localStorage.setItem('token', JSON.stringify(res.data.token))
+        localStorage.setItem('token', res.data.token)
+        props.history.push('/dashboard')
       })
       .catch(err => console.log(err.response))
   }
@@ -91,6 +93,7 @@ const Login = () => {
           >
             Log In
           </Button>
+          <Link to='/register'>Need to register?</Link>
         </form>
       </div>
     </Container>
