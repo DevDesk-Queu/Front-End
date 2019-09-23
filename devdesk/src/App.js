@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
-        <PrivateRoute path='/dashboard' component={PrivateRoute} />
+        <PrivateRoute path='/dashboard' component={Register} />
         <Route component={Login} />
       </Switch>
     </div>
