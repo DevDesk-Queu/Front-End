@@ -13,7 +13,10 @@ function App() {
       <Switch>
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
-        <PrivateRoute path='/dashboard' component={StudentDashboard} />
+        <PrivateRoute
+          path='/dashboard'
+          render={props => <StudentDashboard {...props} />}
+        />
         <Route
           path='/studentdashboard'
           render={props => <StudentDashboard {...props} />}
