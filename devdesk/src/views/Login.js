@@ -39,6 +39,10 @@ const Login = props => {
       .post('/auth/login', user)
       .then(res => {
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user_id', res.data.user.id)
+        localStorage.setItem('role', JSON.stringify(res.data.user.role))
+        localStorage.setItem('email', JSON.stringify(res.data.user.email))
+        localStorage.setItem('fullName', JSON.stringify(res.data.user.fullName))
         props.history.push('/dashboard')
       })
       .catch(err => console.log(err.response))
