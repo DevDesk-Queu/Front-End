@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom'
 import Login from './views/Login'
 import Register from './views/Register'
 import NewTicket from './components/NewTicket'
+import PrivateRoute from './components/PrivateRoute'
+import StudentDashboard from './views/StudentDashboard'
 
 function App() {
 
@@ -18,6 +20,9 @@ function App() {
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
         <Route path='/newticket' render={props => <NewTicket {...props} user_id={user_id} categories={categories}/>} />
+        <PrivateRoute path='/dashboard' component={Register} />
+        <Route path='/studentdashboard' render={props => <StudentDashboard {...props} />} />
+        <Route component={Login} />
       </Switch>
     </div>
   )
