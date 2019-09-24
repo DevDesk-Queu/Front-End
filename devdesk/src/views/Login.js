@@ -38,7 +38,6 @@ const Login = props => {
     axios()
       .post('/auth/login', user)
       .then(res => {
-        console.log(res.data)
         localStorage.setItem('token', res.data.token)
         props.history.push('/dashboard')
       })
