@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+import { Link } from 'react-router-dom'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
@@ -15,7 +16,9 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
-const Register = () => {
+const Register = props => {
+  // console.log(props)
+
   // Variable for the styles
   const classes = useStyles()
 
@@ -48,7 +51,12 @@ const Register = () => {
     // console.log(values)
     axios()
       .post('/auth/register', values)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', JSON.stringify(res.data.token))
+        props.history.push('/login')
+      })
+
       .catch(err => console.log(err.response))
   }
 
@@ -130,6 +138,7 @@ const Register = () => {
           >
             Sign Up
           </Button>
+          <Link to='/'>Already registered? Log In!</Link>
         </form>
       </div>
     </Container>
