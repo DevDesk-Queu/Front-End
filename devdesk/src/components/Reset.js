@@ -19,14 +19,12 @@ const Reset = props => {
 
   // Hook for the form
   const [newPassword, setNewPassword] = useState({
-    updatePassword: '',
     password: '',
   })
 
   // handleChange to set state
   const handleChange = event => {
     setNewPassword({
-      ...newPassword,
       [event.target.name]: event.target.value,
     })
   }
@@ -36,22 +34,9 @@ const Reset = props => {
     e.preventDefault()
     // console.log(user)
     // axios()
-    //   .post('/auth/login', user)
+    //   .post('/auth/', newPassword)
     //   .then(res => {
     //     // console.log(res)
-    //     localStorage.setItem('token', res.data.token)
-    //     localStorage.setItem('user_id', res.data.user.id)
-    //     localStorage.setItem('role', JSON.stringify(res.data.user.role))
-    //     localStorage.setItem('email', JSON.stringify(res.data.user.email))
-    //     localStorage.setItem('fullName', JSON.stringify(res.data.user.fullName))
-    //   })
-    //   .then(() => {
-    //     // Handle Logic for the user role
-    //     if (JSON.parse(localStorage.getItem('role')) === 'helper') {
-    //       props.history.push('/helperdashboard')
-    //     } else {
-    //       props.history.push('/studentdashboard')
-    //     }
     //   })
     //   .catch(err => console.log(err))
   }
@@ -73,12 +58,12 @@ const Reset = props => {
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
-                value={newPassword.updatePassword}
+                value={newPassword.password}
                 onChange={e => handleChange(e)}
                 required
                 fullWidth
                 label='New Password'
-                name='updatePassword'
+                name='password'
                 type='password'
               />
             </Grid>
@@ -102,7 +87,7 @@ const Reset = props => {
             color='secondary'
             className={classes.submit}
           >
-            Log In
+            Update Password
           </Button>
           <Link to='/login'>Need to Login?</Link>
         </form>

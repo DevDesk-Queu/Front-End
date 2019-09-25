@@ -104,8 +104,12 @@ const Login = props => {
           >
             Log In
           </Button>
-          <Link to='/register'>Need to register?</Link>
-          <Link to='/reset'>Forgot Password?</Link>
+          <div classname={classes.links}>
+            <Link to='/register'>Need to register?</Link>
+            <Link to='/reset' style={{ 'margin-left': '20px' }}>
+              Forgot Password?
+            </Link>
+          </div>
         </form>
       </div>
     </Container>
@@ -137,5 +141,10 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  links: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 }))
