@@ -44,7 +44,9 @@ const Login = props => {
         localStorage.setItem('role', JSON.stringify(res.data.user.role))
         localStorage.setItem('email', JSON.stringify(res.data.user.email))
         localStorage.setItem('fullName', JSON.stringify(res.data.user.fullName))
-
+      })
+      .then(() => {
+        // Handle Logic for the user role
         if (JSON.parse(localStorage.getItem('role')) === 'helper') {
           props.history.push('/helperdashboard')
         } else {
