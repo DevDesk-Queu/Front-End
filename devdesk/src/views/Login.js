@@ -43,7 +43,7 @@ const Login = props => {
         localStorage.setItem('role', JSON.stringify(res.data.user.role))
         localStorage.setItem('email', JSON.stringify(res.data.user.email))
         localStorage.setItem('fullName', JSON.stringify(res.data.user.fullName))
-        props.history.push('/dashboard')
+        props.history.push('/studentdashboard')
       })
       .catch(err => console.log(err.response))
   }

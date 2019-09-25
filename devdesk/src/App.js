@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import Login from './views/Login'
 import Register from './views/Register'
 import NewTicket from './components/NewTicket'
-import StudentRoute from './components/StudentRoute'
+import PrivateRoute from './components/PrivateRoute'
 import StudentDashboard from './views/StudentDashboard'
 import HelperDashboard from './views/HelperDashboard'
 
@@ -31,11 +31,11 @@ function App() {
             <NewTicket {...props} user_id={user_id} categories={categories} />
           )}
         />
-        <StudentRoute
+        <PrivateRoute
           path='/studentdashboard'
           render={props => <StudentDashboard {...props} />}
         />
-        <HelperRoute
+        <PrivateRoute
           path='/helperdashboard'
           render={props => <HelperDashboard {...props} />}
         />
