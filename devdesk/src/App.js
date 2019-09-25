@@ -8,6 +8,7 @@ import NewTicket from './components/NewTicket'
 import PrivateRoute from './components/PrivateRoute'
 import StudentDashboard from './views/StudentDashboard'
 import HelperDashboard from './views/HelperDashboard'
+import Reset from './components/Reset'
 
 function App() {
   //example props to be passed down
@@ -25,6 +26,7 @@ function App() {
       <Switch>
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
+        <Route path='/reset' render={props => <Reset {...props} />} />
         <Route
           path='/newticket'
           render={props => (
