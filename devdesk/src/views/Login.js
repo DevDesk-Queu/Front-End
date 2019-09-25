@@ -38,7 +38,7 @@ const Login = props => {
     axios()
       .post('/auth/login', user)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user_id', res.data.user.id)
         localStorage.setItem('role', JSON.stringify(res.data.user.role))
