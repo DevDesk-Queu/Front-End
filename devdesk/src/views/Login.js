@@ -105,7 +105,7 @@ const Login = props => {
             Log In
           </Button>
           <Link to='/register'>Need to register?</Link>
-          <Link to='#'>Forgot Password?</Link>
+          <Link to='/reset'>Forgot Password?</Link>
         </form>
       </div>
     </Container>
