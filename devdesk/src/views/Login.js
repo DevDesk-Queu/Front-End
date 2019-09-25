@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+import { axiosWithAuth as axios } from '../utils/axiosConfig'
 import { Link } from 'react-router-dom'
 
 // Form Components
