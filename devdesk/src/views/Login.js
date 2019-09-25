@@ -104,11 +104,9 @@ const Login = props => {
           >
             Log In
           </Button>
-          <div classname={classes.links}>
+          <div className={classes.links}>
             <Link to='/register'>Need to register?</Link>
-            <Link to='/reset' style={{ 'margin-left': '20px' }}>
-              Forgot Password?
-            </Link>
+            <Link to='/reset'>Forgot Password?</Link>
           </div>
         </form>
       </div>
