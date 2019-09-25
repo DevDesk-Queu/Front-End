@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 
 const Register = props => {
   // console.log(props)
@@ -52,8 +53,6 @@ const Register = props => {
     axios()
       .post('/auth/register', values)
       .then(res => {
-        console.log(res)
-        localStorage.setItem('token', JSON.stringify(res.data.token))
         props.history.push('/login')
       })
 
@@ -123,9 +122,9 @@ const Register = props => {
                 name='role'
                 labelWidth={labelWidth}
               >
-                <option value='' />
-                <option value='user'>User</option>
-                <option value='helper'>Helper</option>
+                <MenuItem value='' />
+                <MenuItem value='user'>User</MenuItem>
+                <MenuItem value='helper'>Helper</MenuItem>
               </Select>
             </FormControl>
           </Grid>
