@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
 import { Link } from 'react-router-dom'
-import { Form, Field, withFormik } from 'formik'
-import * as Yup from 'yup'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
@@ -18,7 +16,6 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import { TextField } from 'formik-material-ui'
 
 const Register = props => {
   // console.log(props)
