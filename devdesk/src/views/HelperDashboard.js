@@ -41,7 +41,7 @@ export default function HelperDashboard() {
       .catch(err => {
         console.log('err', err)
       })
-    console.log('clicked')
+    // console.log('clicked')
   }
 
   return (
