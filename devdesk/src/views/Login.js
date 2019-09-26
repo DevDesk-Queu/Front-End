@@ -46,27 +46,6 @@ const Login = ({ history, status }) => {
     }
   }, [status])
 
-  // Hook for the form
-  // const [user, setUser] = useState({
-  //   email: '',
-  //   password: '',
-  // })
-
-  // handleChange to set state
-  // const handleChange = event => {
-  //   setUser({
-  //     ...user,
-  //     [event.target.name]: event.target.value,
-  //   })
-  // }
-
-  // handleSubmit to POST user
-  // const handleSubmit = e => {
-  //   e.preventDefault()
-  //   // console.log(user)
-
-  // }
-
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
