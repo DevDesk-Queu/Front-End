@@ -8,8 +8,11 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
-export default function StudentDashboard() {
+export default function HelperDashboard() {
   const [tickets, setTickets] = useState([])
+
+  // grab id from local storage
+  const helper_id = localStorage.getItem('user_id')
 
   // styles
   const classes = useStyles()
@@ -42,10 +45,24 @@ export default function StudentDashboard() {
   }
 
   return (
-    <Container component='main' maxWidth='xl'>
+    <Container component='main' maxWidth='xl' className={classes.paper}>
       <CssBaseline />
-      <Button onClick={e => getAllTickets(e)}>All Tickets</Button>
-      <Button onClick={e => getMyTickets(e)}>My Tickets</Button>
+      <Button
+        onClick={e => getAllTickets(e)}
+        variant='contained'
+        color='secondary'
+        className={classes.buttons}
+      >
+        All Tickets
+      </Button>
+      <Button
+        onClick={e => getMyTickets(e)}
+        variant='contained'
+        color='secondary'
+        className={classes.buttons}
+      >
+        My Tickets
+      </Button>
       <Card className={classes.paper}>
         {tickets &&
           tickets.map(ticket => {
@@ -75,12 +92,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing(8),
+    margin: theme.spacing(4, 2),
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   buttons: {
-    display: 'flex',
+    marginLeft: theme.spacing(2),
   },
 }))
