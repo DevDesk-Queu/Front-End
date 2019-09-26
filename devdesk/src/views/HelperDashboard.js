@@ -33,14 +33,14 @@ export default function HelperDashboard() {
   }
 
   const getMyTickets = e => {
-    // axios()
-    //   .get(`/users/${}/tickets`)
-    //   .then(res => {
-    //     setTickets(res.data)
-    //   })
-    //   .catch(err => {
-    //     console.log('err', err)
-    //   })
+    axios()
+      .get(`/tickets/${helper_id}/tickets`)
+      .then(res => {
+        setTickets(res.data)
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
     console.log('clicked')
   }
 
