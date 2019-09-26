@@ -9,7 +9,7 @@ export default function StudentDashboard() {
 
   useEffect(() => {
     axios()
-      .get('/users/1/tickets')
+      .get('/tickets')
       .then(res => {
         setTickets(res.data)
       })
