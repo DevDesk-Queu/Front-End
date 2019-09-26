@@ -3,11 +3,16 @@ import { axiosWithAuth as axios } from '../utils/axiosConfig'
 
 import OpenTicket from '../components/OpenTicket'
 import Card from '@material-ui/core/Card'
+import Button from '@material-ui/core/Button'
 
 export default function StudentDashboard() {
   const [tickets, setTickets] = useState([])
 
   useEffect(() => {
+    getAllTickets()
+  }, [])
+
+  const getAllTickets = () => {
     axios()
       .get('/tickets')
       .then(res => {
@@ -16,10 +21,12 @@ export default function StudentDashboard() {
       .catch(err => {
         console.log('err', err)
       })
-  }, [])
+  }
 
   return (
     <section>
+      <Button onClick={e => getAllTickets(e)}>All Tickets</Button>
+      <Button>My Tickets</Button>
       <Card>
         {tickets &&
           tickets.map(ticket => {
