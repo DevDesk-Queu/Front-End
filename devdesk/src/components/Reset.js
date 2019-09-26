@@ -16,6 +16,7 @@ import Container from '@material-ui/core/Container'
 const Reset = props => {
   // Variable for the styles
   const classes = useStyles()
+  const userId = localStorage.getItem('user_id')
 
   // Hook for the form
   const [newPassword, setNewPassword] = useState({
@@ -34,9 +35,9 @@ const Reset = props => {
     e.preventDefault()
     // console.log(user)
     // axios()
-    //   .post('/auth/', newPassword)
+    //   .put(`/${userId}`, newPassword)
     //   .then(res => {
-    //     // console.log(res)
+    //     console.log(res)
     //   })
     //   .catch(err => console.log(err))
   }
