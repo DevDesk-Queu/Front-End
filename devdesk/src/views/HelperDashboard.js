@@ -45,7 +45,7 @@ export default function HelperDashboard() {
   }
 
   return (
-    <Container component='main' maxWidth='xl' className={classes.paper}>
+    <Container component='main' maxWidth='lg' className={classes.paper}>
       <CssBaseline />
       <Button
         onClick={e => getAllTickets(e)}
@@ -92,13 +92,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   paper: {
-    margin: theme.spacing(4, 2),
+    margin: theme.spacing(4, 0),
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttons: {
-    marginLeft: theme.spacing(2),
+    margin: theme.spacing(2, 1),
   },
 }))
