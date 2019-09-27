@@ -55,7 +55,6 @@ const Register = props => {
       .then(res => {
         props.history.push('/login')
       })
-
       .catch(err => console.log(err.response))
   }
 
