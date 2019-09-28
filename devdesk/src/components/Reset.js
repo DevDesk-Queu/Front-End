@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
 import { Link } from 'react-router-dom'
 
@@ -12,36 +12,20 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
 
-const Register = props => {
-  // console.log(props)
-
+const Reset = props => {
   // Variable for the styles
   const classes = useStyles()
-
-  // label items to test
-  const inputLabel = useRef(null)
-  const [labelWidth, setLabelWidth] = useState(0)
-  useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth)
-  }, [])
+  const userId = localStorage.getItem('user_id')
 
   // Hook for the form
-  const [values, setValues] = useState({
-    fullName: '',
-    email: '',
+  const [newPassword, setNewPassword] = useState({
     password: '',
-    role: '',
   })
 
   // handleChange to set state
   const handleChange = event => {
-    setValues({
-      ...values,
+    setNewPassword({
       [event.target.name]: event.target.value,
     })
   }
@@ -49,13 +33,13 @@ const Register = props => {
   // handleSubmit to POST user
   const handleSubmit = e => {
     e.preventDefault()
-    // console.log(values)
-    axios()
-      .post('/auth/register', values)
-      .then(res => {
-        props.history.push('/login')
-      })
-      .catch(err => console.log(err.response))
+    // console.log(user)
+    // axios()
+    //   .put(`/${userId}`, newPassword)
+    //   .then(res => {
+    //     console.log(res)
+    //   })
+    //   .catch(err => console.log(err))
   }
 
   return (
@@ -66,7 +50,7 @@ const Register = props => {
           <AccountCircleIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Register
+          Reset Password
         </Typography>
 
         {/* Start of form */}
@@ -74,58 +58,28 @@ const Register = props => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                name='fullName'
                 variant='outlined'
-                value={values.fullName}
+                value={newPassword.password}
                 onChange={e => handleChange(e)}
                 required
                 fullWidth
-                label='Full Name'
-                autoFocus
+                label='New Password'
+                name='password'
+                type='password'
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
-                value={values.email}
-                onChange={e => handleChange(e)}
-                required
-                fullWidth
-                label='Email Address'
-                name='email'
-                type='email'
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                value={values.password}
+                value={newPassword.password}
                 onChange={e => handleChange(e)}
                 required
                 fullWidth
                 name='password'
-                label='Password'
+                label='Repeat Password'
                 type='password'
               />
             </Grid>
-            <FormControl
-              variant='outlined'
-              className={classes.formControl}
-              fullWidth
-              required
-            >
-              <InputLabel ref={inputLabel}>Role</InputLabel>
-              <Select
-                value={values.role}
-                onChange={e => handleChange(e)}
-                name='role'
-                labelWidth={labelWidth}
-              >
-                <MenuItem value='' />
-                <MenuItem value='user'>User</MenuItem>
-                <MenuItem value='helper'>Helper</MenuItem>
-              </Select>
-            </FormControl>
           </Grid>
           <Button
             type='submit'
@@ -134,16 +88,16 @@ const Register = props => {
             color='secondary'
             className={classes.submit}
           >
-            Sign Up
+            Update Password
           </Button>
-          <Link to='/'>Already registered? Log In!</Link>
+          <Link to='/login'>Need to Login?</Link>
         </form>
       </div>
     </Container>
   )
 }
 
-export default Register
+export default Reset
 
 // Set style theme for the form components
 const useStyles = makeStyles(theme => ({
@@ -165,13 +119,6 @@ const useStyles = makeStyles(theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),

@@ -1,31 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { axiosWithAuth as axios } from '../utils/axiosConfig'
 
-import Container from '@material-ui/core/Container'
+import OpenTicket from '../components/OpenTicket'
 import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 
-const StudentDashboard = () => {
-  return (
-    <Container maxWidth="xs">
-        <Button 
-            type='submit'
-            size='small'
-            variant='contained'
-            color='secondary'
-            >
-                Create Ticket
-                </Button>
-      <Card>
-          <CardContent>
-            <Typography>
-                <h1>Hello from Student Dashboard!</h1>
-            </Typography>
-          </CardContent>
+export default function StudentDashboard() { 
+  const [tickets, setTickets] = useState([])
+
+  useEffect(() => {
+    axios()
+    .get('/users/1/tickets')
+    .then(res => { setTickets(res.data)})
+    .catch(err => { console.log('err', err)
+    })
+  }, [])
+
+    return (
+      <section>
+        <Card>
+        {tickets && tickets.map(ticket => {
+          return (
+              <OpenTicket
+                ticket={ticket} 
+                key={ticket.id}
+                title={ticket.title}
+                description={ticket.description}
+                category={ticket.category}
+                user_id={ticket.user_id}
+                created_at={ticket.created_at}
+                updated_at={ticket.updated_at}
+                />
+            )
+          })}
       </Card>
-    </Container>
-  )
-}
-
-export default StudentDashboard
+      </section>
+      
+    )
+    }

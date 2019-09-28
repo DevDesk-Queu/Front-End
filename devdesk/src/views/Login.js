@@ -1,52 +1,50 @@
-import React, { useState } from 'react'
-import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+import React, { useEffect } from 'react'
+import { axiosWithAuth as axios } from '../utils/axiosConfig'
 import { Link } from 'react-router-dom'
+import { Form, Field, withFormik } from 'formik'
+import * as Yup from 'yup'
 
 // Form Components
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import { TextField } from 'formik-material-ui'
 
-const Login = props => {
+const Login = ({ history, status }) => {
   // Variable for the styles
   const classes = useStyles()
 
-  // Hook for the form
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  })
-
-  // handleChange to set state
-  const handleChange = event => {
-    setUser({
-      ...user,
-      [event.target.name]: event.target.value,
-    })
-  }
-
-  // handleSubmit to POST user
-  const handleSubmit = e => {
-    e.preventDefault()
-    // console.log(user)
-    axios()
-      .post('/auth/login', user)
-      .then(res => {
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('user_id', res.data.user.id)
-        localStorage.setItem('role', JSON.stringify(res.data.user.role))
-        localStorage.setItem('email', JSON.stringify(res.data.user.email))
-        localStorage.setItem('fullName', JSON.stringify(res.data.user.fullName))
-        props.history.push('/dashboard')
-      })
-      .catch(err => console.log(err.response))
-  }
+  useEffect(() => {
+    if (status) {
+      axios()
+        .post('/auth/login', status)
+        .then(res => {
+          // console.log(res)
+          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('user_id', res.data.user.id)
+          localStorage.setItem('role', JSON.stringify(res.data.user.role))
+          localStorage.setItem('email', JSON.stringify(res.data.user.email))
+          localStorage.setItem(
+            'fullName',
+            JSON.stringify(res.data.user.fullName),
+          )
+        })
+        .then(() => {
+          // Handle Logic for the user role
+          if (JSON.parse(localStorage.getItem('role')) === 'helper') {
+            history.push('/helperdashboard')
+          } else {
+            history.push('/studentdashboard')
+          }
+        })
+        .catch(err => console.log(err))
+    }
+  }, [status])
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -60,13 +58,12 @@ const Login = props => {
         </Typography>
 
         {/* Start of form */}
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <Form className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
+              <Field
                 variant='outlined'
-                value={user.email}
-                onChange={e => handleChange(e)}
+                component={TextField}
                 required
                 fullWidth
                 label='Email Address'
@@ -75,10 +72,9 @@ const Login = props => {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Field
                 variant='outlined'
-                value={user.password}
-                onChange={e => handleChange(e)}
+                component={TextField}
                 required
                 fullWidth
                 name='password'
@@ -96,14 +92,38 @@ const Login = props => {
           >
             Log In
           </Button>
-          <Link to='/register'>Need to register?</Link>
-        </form>
+          <div className={classes.links}>
+            <Link to='/register'>Need to register?</Link>
+            <Link to='/reset'>Forgot Password?</Link>
+          </div>
+        </Form>
       </div>
     </Container>
   )
 }
 
-export default Login
+export default withFormik({
+  mapPropsToValues: ({ email, password }) => {
+    return {
+      email: email || '',
+      password: password || '',
+    }
+  },
+
+  // Validation
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required('Please provide your email.'),
+    password: Yup.string().required('Please provide your password.'),
+  }),
+
+  // handleSubmit
+  handleSubmit(values, { setStatus }) {
+    // console.log(values)
+    setStatus(values)
+  },
+})(Login)
 
 // Set style theme for the form components
 const useStyles = makeStyles(theme => ({
@@ -128,5 +148,10 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  links: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 }))
