@@ -52,7 +52,7 @@ export default function HelperDashboard() {
         component='main'
         maxWidth='lg'
         className={classes.paper}
-        style={{ marginTop: '6rem' }}
+        style={{ margin: '6rem auto 0' }}
       >
         <CssBaseline />
         <Button
@@ -73,11 +73,11 @@ export default function HelperDashboard() {
         </Button>
         <Card className={classes.paper}>
           {tickets &&
-            tickets.map(ticket => {
+            tickets.map((ticket, index) => {
               return (
                 <OpenTicket
                   ticket={ticket}
-                  key={ticket.id}
+                  key={index}
                   title={ticket.title}
                   description={ticket.description}
                   category={ticket.category}
