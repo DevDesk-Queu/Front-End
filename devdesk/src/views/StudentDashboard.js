@@ -13,6 +13,8 @@ export default function StudentDashboard() {
   const [tickets, setTickets] = useState([])
   const user_id = localStorage.getItem('user_id')
 
+  console.log(localStorage)
+
   useEffect(() => {
     getAllTickets()
   }, [])
