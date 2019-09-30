@@ -7,9 +7,11 @@ import Card from '@material-ui/core/Card'
 export default function StudentDashboard() { 
   const [tickets, setTickets] = useState([])
 
+  console.log(localStorage)
+
   useEffect(() => {
     axios()
-    .get('/users/1/tickets')
+    .get(`/users/45/tickets`)
     .then(res => { setTickets(res.data)})
     .catch(err => { console.log('err', err)
     })
