@@ -22,23 +22,13 @@ export default function StudentDashboard() {
 
   const getAllTickets = () => {
     axios()
-      .get(`users/1/tickets/`)
+      .get(`users/${user_id}/tickets/`)
       .then(res => {
         setTickets(res.data)
       })
       .catch(err => {
         console.log('err', err)
       })
-  }
-  {
-    /* axios()
-      .get(`/tickets/${user_id}/tickets`)
-      .then(res => {
-        setTickets(res.data)
-      })
-      .catch(err => {
-        console.log('err', err)
-      }) */
   }
 
   return (
