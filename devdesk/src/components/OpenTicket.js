@@ -37,7 +37,7 @@ export default function OpenTicket() {
   // ********** To test replace ${user_id} with a user id from DB 1, 2, 3 or 4 **********
   const getAllTickets = () => {
     axios()
-      .get(`users/1/tickets`)
+      .get(`users/${user_id}/tickets`)
       .then(res => {
         setTickets(res.data)
       })
@@ -67,7 +67,7 @@ export default function OpenTicket() {
   return (
     <>
       {tickets &&
-        tickets.map(({ ticket_id, title, description, category, i }) => (
+        tickets.map(({ title, description, category, i }) => (
           <Grid item xs={4} style={{ marginTop: '6rem' }}>
             <Card key={i} className={classes.card}>
               <CardContent>
