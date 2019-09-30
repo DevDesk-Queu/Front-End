@@ -18,6 +18,14 @@ export default function NewTicket(props) {
 
     const user_id = localStorage.getItem('user_id')
 
+    const categories = [
+      'JS',
+      'React',
+      'HTML/CSS',
+      'Node.js',
+      'Other'
+    ]
+
     const classes = useStyles()
 
     const [formFields, setFormFields] = useState({
@@ -89,7 +97,7 @@ export default function NewTicket(props) {
                 name='category'
               >
                 <option value='' />
-                {props.categories.map(cat => {
+                {categories.map(cat => {
                   let catcap = cat.charAt(0).toUpperCase() + cat.slice(1)
                   return <option key={cat} value={cat}>{catcap}</option>
                 })}

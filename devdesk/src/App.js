@@ -11,14 +11,6 @@ import HelperDashboard from './views/HelperDashboard'
 import Reset from './components/Reset'
 
 function App() {
-  //example props to be passed down
-  const categories = [
-    'category1',
-    'category2',
-    'category3',
-    'category4',
-    'category5'
-  ]
 
   return (
     <div className='App'>
@@ -29,7 +21,7 @@ function App() {
         <Route
           path='/newticket'
           render={props => (
-            <NewTicket {...props} categories={categories} />
+            <NewTicket {...props} />
           )}
         />
         <PrivateRoute
