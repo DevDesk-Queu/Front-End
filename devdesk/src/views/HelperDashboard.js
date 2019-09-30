@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Navbar from '../components/Navbar'
 
 export default function HelperDashboard() {
   const [tickets, setTickets] = useState([])
@@ -45,42 +46,50 @@ export default function HelperDashboard() {
   }
 
   return (
-    <Container component='main' maxWidth='lg' className={classes.paper}>
-      <CssBaseline />
-      <Button
-        onClick={e => getAllTickets(e)}
-        variant='contained'
-        color='secondary'
-        className={classes.buttons}
+    <>
+      <Navbar />
+      <Container
+        component='main'
+        maxWidth='lg'
+        className={classes.paper}
+        style={{ marginTop: '6rem' }}
       >
-        All Tickets
-      </Button>
-      <Button
-        onClick={e => getMyTickets(e)}
-        variant='contained'
-        color='secondary'
-        className={classes.buttons}
-      >
-        My Tickets
-      </Button>
-      <Card className={classes.paper}>
-        {tickets &&
-          tickets.map(ticket => {
-            return (
-              <OpenTicket
-                ticket={ticket}
-                key={ticket.id}
-                title={ticket.title}
-                description={ticket.description}
-                category={ticket.category}
-                user_id={ticket.user_id}
-                created_at={ticket.created_at}
-                updated_at={ticket.updated_at}
-              />
-            )
-          })}
-      </Card>
-    </Container>
+        <CssBaseline />
+        <Button
+          onClick={e => getAllTickets(e)}
+          variant='contained'
+          color='secondary'
+          className={classes.buttons}
+        >
+          All Tickets
+        </Button>
+        <Button
+          onClick={e => getMyTickets(e)}
+          variant='contained'
+          color='secondary'
+          className={classes.buttons}
+        >
+          My Tickets
+        </Button>
+        <Card className={classes.paper}>
+          {tickets &&
+            tickets.map(ticket => {
+              return (
+                <OpenTicket
+                  ticket={ticket}
+                  key={ticket.id}
+                  title={ticket.title}
+                  description={ticket.description}
+                  category={ticket.category}
+                  user_id={ticket.user_id}
+                  created_at={ticket.created_at}
+                  updated_at={ticket.updated_at}
+                />
+              )
+            })}
+        </Card>
+      </Container>
+    </>
   )
 }
 
@@ -88,17 +97,17 @@ export default function HelperDashboard() {
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
-    },
+      backgroundColor: theme.palette.common.white
+    }
   },
   paper: {
     margin: theme.spacing(4, 0),
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   buttons: {
-    margin: theme.spacing(2, 1),
-  },
+    margin: theme.spacing(2, 1)
+  }
 }))
