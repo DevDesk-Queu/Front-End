@@ -16,13 +16,15 @@ import FormControl from '@material-ui/core/FormControl'
 
 export default function NewTicket(props) {
 
+    const user_id = localStorage.getItem('user_id')
+
     const classes = useStyles()
 
     const [formFields, setFormFields] = useState({
       title: '',
       description: '',
       category: '',
-      user_id: props.user_id
+      user_id: user_id
     })
 
     const handleChange = event => {
@@ -38,7 +40,7 @@ export default function NewTicket(props) {
 
       axios()
         .post('/tickets', formFields)
-        .then(res => console.log(res))
+        .then(res => props.history.push('/studentdashboard'))
         .catch(err => console.log(err.response))
     }
 

@@ -12,7 +12,6 @@ import Reset from './components/Reset'
 
 function App() {
   //example props to be passed down
-  const user_id = 5
   const categories = [
     'category1',
     'category2',
@@ -30,7 +29,7 @@ function App() {
         <Route
           path='/newticket'
           render={props => (
-            <NewTicket {...props} user_id={user_id} categories={categories} />
+            <NewTicket {...props} categories={categories} />
           )}
         />
         <PrivateRoute
