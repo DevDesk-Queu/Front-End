@@ -52,7 +52,7 @@ export default function HelperDashboard() {
         component='main'
         maxWidth='lg'
         className={classes.paper}
-        style={{ marginTop: '6rem' }}
+        style={{ margin: '6rem auto 0' }}
       >
         <CssBaseline />
         <Button
