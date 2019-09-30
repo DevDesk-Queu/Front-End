@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
+// import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
 import { Link } from 'react-router-dom'
 
 // Form Components
@@ -16,17 +16,17 @@ import Container from '@material-ui/core/Container'
 const Reset = props => {
   // Variable for the styles
   const classes = useStyles()
-  const userId = localStorage.getItem('user_id')
+  // const userId = localStorage.getItem('user_id')
 
   // Hook for the form
   const [newPassword, setNewPassword] = useState({
-    password: '',
+    password: ''
   })
 
   // handleChange to set state
   const handleChange = event => {
     setNewPassword({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     })
   }
 
@@ -103,24 +103,24 @@ export default Reset
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
-    },
+      backgroundColor: theme.palette.common.white
+    }
   },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(3)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }))
