@@ -28,7 +28,7 @@ export default function StudentDashboard() {
   }
 
   return (
-    <>
+    <div className={classes.height}>
       <Navbar createTicket={true} />
       <Container
         component='main'
@@ -43,7 +43,7 @@ export default function StudentDashboard() {
             })}
         </Card>
       </Container>
-    </>
+    </div>
   )
 }
 
@@ -52,6 +52,9 @@ const useStyles = makeStyles(theme => ({
     body: {
       backgroundColor: theme.palette.common.white,
     },
+  },
+  height: {
+    height: '100vh',
   },
   paper: {
     margin: theme.spacing(1, 0),
