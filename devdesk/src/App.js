@@ -12,7 +12,7 @@ import Reset from './components/Reset'
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#14121F', height: '100vh' }}>
+    <div style={{ backgroundColor: '#14121F', height: '100%' }}>
       <Switch>
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />

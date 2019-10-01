@@ -43,7 +43,7 @@ const Reset = props => {
   }
 
   return (
-    <>
+    <div className={classes.height}>
       <Typography component='h1' variant='h2' className={classes.header}>
         Welcome To The Dev Desk
       </Typography>
@@ -98,7 +98,7 @@ const Reset = props => {
           </form>
         </div>
       </Container>
-    </>
+    </div>
   )
 }
 
@@ -110,6 +110,9 @@ const useStyles = makeStyles(theme => ({
     body: {
       backgroundColor: theme.palette.common.white,
     },
+  },
+  height: {
+    height: '100vh',
   },
   header: {
     color: 'white',
