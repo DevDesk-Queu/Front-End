@@ -74,18 +74,7 @@ export default function HelperDashboard() {
         <Card className={classes.paper}>
           {tickets &&
             tickets.map((ticket, index) => {
-              return (
-                <OpenTicket
-                  ticket={ticket}
-                  key={index}
-                  title={ticket.title}
-                  description={ticket.description}
-                  category={ticket.category}
-                  user_id={ticket.user_id}
-                  created_at={ticket.created_at}
-                  updated_at={ticket.updated_at}
-                />
-              )
+              return <OpenTicket key={index} ticket={ticket} />
             })}
         </Card>
       </Container>
@@ -97,17 +86,17 @@ export default function HelperDashboard() {
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   paper: {
     margin: theme.spacing(4, 0),
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   buttons: {
-    margin: theme.spacing(2, 1)
-  }
+    margin: theme.spacing(2, 1),
+  },
 }))

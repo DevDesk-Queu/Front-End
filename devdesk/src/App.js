@@ -11,19 +11,13 @@ import HelperDashboard from './views/HelperDashboard'
 import Reset from './components/Reset'
 
 function App() {
-
   return (
     <div className='App'>
       <Switch>
         <Route path='/login' render={props => <Login {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
         <Route path='/reset' render={props => <Reset {...props} />} />
-        <Route
-          path='/newticket'
-          render={props => (
-            <NewTicket {...props} />
-          )}
-        />
+        <Route path='/newticket' render={props => <NewTicket {...props} />} />
         <PrivateRoute
           path='/studentdashboard'
           render={props => <StudentDashboard {...props} />}
