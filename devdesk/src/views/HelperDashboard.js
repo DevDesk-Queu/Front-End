@@ -51,7 +51,7 @@ export default function HelperDashboard() {
         component='main'
         maxWidth='lg'
         className={classes.paper}
-        style={{ margin: '6rem auto 0' }}
+        style={{ margin: '5rem auto 0' }}
       >
         <CssBaseline />
         <Card className={classes.paper}>

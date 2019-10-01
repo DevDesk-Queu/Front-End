@@ -59,87 +59,92 @@ const Register = props => {
   }
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <AccountCircleIcon />
-        </Avatar>
-        <Typography component='h1' variant='h5'>
-          Register
-        </Typography>
+    <div className={classes.height}>
+      <Typography component='h1' variant='h2' className={classes.header}>
+        Welcome To The Dev Desk
+      </Typography>
+      <Container component='main' maxWidth='xs' className={classes.paper}>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <AccountCircleIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Register
+          </Typography>
 
-        {/* Start of form */}
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                name='fullName'
+          {/* Start of form */}
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  name='fullName'
+                  variant='outlined'
+                  value={values.fullName}
+                  onChange={e => handleChange(e)}
+                  required
+                  fullWidth
+                  label='Full Name'
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  value={values.email}
+                  onChange={e => handleChange(e)}
+                  required
+                  fullWidth
+                  label='Email Address'
+                  name='email'
+                  type='email'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  value={values.password}
+                  onChange={e => handleChange(e)}
+                  required
+                  fullWidth
+                  name='password'
+                  label='Password'
+                  type='password'
+                />
+              </Grid>
+              <FormControl
                 variant='outlined'
-                value={values.fullName}
-                onChange={e => handleChange(e)}
-                required
+                className={classes.formControl}
                 fullWidth
-                label='Full Name'
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                value={values.email}
-                onChange={e => handleChange(e)}
                 required
-                fullWidth
-                label='Email Address'
-                name='email'
-                type='email'
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                value={values.password}
-                onChange={e => handleChange(e)}
-                required
-                fullWidth
-                name='password'
-                label='Password'
-                type='password'
-              />
-            </Grid>
-            <FormControl
-              variant='outlined'
-              className={classes.formControl}
-              fullWidth
-              required
-            >
-              <InputLabel ref={inputLabel}>Role</InputLabel>
-              <Select
-                value={values.role}
-                onChange={e => handleChange(e)}
-                name='role'
-                labelWidth={labelWidth}
               >
-                <MenuItem value='' />
-                <MenuItem value='user'>User</MenuItem>
-                <MenuItem value='helper'>Helper</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='secondary'
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Link to='/'>Already registered? Log In!</Link>
-        </form>
-      </div>
-    </Container>
+                <InputLabel ref={inputLabel}>Role</InputLabel>
+                <Select
+                  value={values.role}
+                  onChange={e => handleChange(e)}
+                  name='role'
+                  labelWidth={labelWidth}
+                >
+                  <MenuItem value='' />
+                  <MenuItem value='user'>User</MenuItem>
+                  <MenuItem value='helper'>Helper</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='secondary'
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+            <Link to='/'>Already registered? Log In!</Link>
+          </form>
+        </div>
+      </Container>
+    </div>
   )
 }
 
@@ -152,10 +157,21 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white,
     },
   },
+  height: {
+    height: '100vh',
+  },
+  header: {
+    color: 'white',
+    margin: '0 auto 5rem',
+    textAlign: 'center',
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing(8, 2),
+    borderRadius: '5px',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   avatar: {

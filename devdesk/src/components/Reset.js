@@ -20,13 +20,13 @@ const Reset = props => {
 
   // Hook for the form
   const [newPassword, setNewPassword] = useState({
-    password: ''
+    password: '',
   })
 
   // handleChange to set state
   const handleChange = event => {
     setNewPassword({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
   }
 
@@ -43,57 +43,62 @@ const Reset = props => {
   }
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <AccountCircleIcon />
-        </Avatar>
-        <Typography component='h1' variant='h5'>
-          Reset Password
-        </Typography>
+    <div className={classes.height}>
+      <Typography component='h1' variant='h2' className={classes.header}>
+        Welcome To The Dev Desk
+      </Typography>
+      <Container component='main' maxWidth='xs' className={classes.paper}>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <AccountCircleIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Reset Password
+          </Typography>
 
-        {/* Start of form */}
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                value={newPassword.password}
-                onChange={e => handleChange(e)}
-                required
-                fullWidth
-                label='New Password'
-                name='password'
-                type='password'
-              />
+          {/* Start of form */}
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  value={newPassword.password}
+                  onChange={e => handleChange(e)}
+                  required
+                  fullWidth
+                  label='New Password'
+                  name='password'
+                  type='password'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  value={newPassword.password}
+                  onChange={e => handleChange(e)}
+                  required
+                  fullWidth
+                  name='password'
+                  label='Repeat Password'
+                  type='password'
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                value={newPassword.password}
-                onChange={e => handleChange(e)}
-                required
-                fullWidth
-                name='password'
-                label='Repeat Password'
-                type='password'
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='secondary'
-            className={classes.submit}
-          >
-            Update Password
-          </Button>
-          <Link to='/login'>Need to Login?</Link>
-        </form>
-      </div>
-    </Container>
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='secondary'
+              className={classes.submit}
+            >
+              Update Password
+            </Button>
+            <Link to='/login'>Need to Login?</Link>
+          </form>
+        </div>
+      </Container>
+    </div>
   )
 }
 
@@ -103,24 +108,35 @@ export default Reset
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
+  },
+  height: {
+    height: '100vh',
+  },
+  header: {
+    color: 'white',
+    margin: '0 auto 5rem',
+    textAlign: 'center',
   },
   paper: {
-    marginTop: theme.spacing(8),
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing(8, 2),
+    borderRadius: '5px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }))

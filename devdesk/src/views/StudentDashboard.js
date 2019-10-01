@@ -34,7 +34,7 @@ export default function StudentDashboard() {
         component='main'
         maxWidth='lg'
         className={classes.paper}
-        style={{ margin: '1rem auto 0' }}
+        style={{ margin: '5rem auto 0' }}
       >
         <Card className={classes.cards}>
           {tickets &&
@@ -65,8 +65,5 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttons: {
-    margin: theme.spacing(2, 1),
   },
 }))
