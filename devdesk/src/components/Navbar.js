@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Img from '../assets/Lambda-removebg.png'
 
-const Navbar = () => {
+const Navbar = props => {
   const logout = () => {
     localStorage.removeItem('token')
   }
@@ -15,6 +15,21 @@ const Navbar = () => {
         <h1 style={{ color: 'white' }}>DEV DESK</h1>
       </div>
       <div>
+        {props.createTicket && (
+          <Link style={linkStyles} to='/newTicket'>
+            New Ticket
+          </Link>
+        )}
+        {props.allTickets && (
+          <Link onClick={e => props.allTickets(e)} style={linkStyles} to='#'>
+            All Tickets
+          </Link>
+        )}
+        {props.myTickets && (
+          <Link onClick={e => props.myTickets(e)} style={linkStyles} to='#'>
+            My Tickets
+          </Link>
+        )}
         <Link onClick={() => logout()} style={linkStyles} to='/'>
           Logout
         </Link>
@@ -34,17 +49,17 @@ const navStyles = {
   padding: '.5rem 1rem',
   position: 'fixed',
   top: '0',
-  zIndex: '1'
+  zIndex: '1',
 }
 
 const imgStyles = {
   width: '40px',
-  height: '40px'
+  height: '40px',
 }
 
 const ImgDiv = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 }
 
 const linkStyles = {
@@ -52,5 +67,6 @@ const linkStyles = {
   padding: '8px 14px',
   background: '#bb1333',
   textDecoration: 'none',
-  borderRadius: '5px'
+  borderRadius: '5px',
+  margin: '0 5px',
 }
