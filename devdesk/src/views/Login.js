@@ -47,9 +47,12 @@ const Login = ({ history, status }) => {
   }, [status])
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
+    <>
+      <Typography component='h1' variant='h2' className={classes.header}>
+        Welcome To The Dev Desk
+      </Typography>
+      <Container component='main' maxWidth='xs' className={classes.paper}>
+        <CssBaseline />
         <Avatar className={classes.avatar}>
           <AccountCircleIcon />
         </Avatar>
@@ -97,8 +100,8 @@ const Login = ({ history, status }) => {
             <Link to='/reset'>Forgot Password?</Link>
           </div>
         </Form>
-      </div>
-    </Container>
+      </Container>
+    </>
   )
 }
 
@@ -132,10 +135,18 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white,
     },
   },
+  header: {
+    color: 'white',
+    margin: '0 auto 5rem',
+    textAlign: 'center',
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing(8, 2),
+    borderRadius: '5px',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   avatar: {
