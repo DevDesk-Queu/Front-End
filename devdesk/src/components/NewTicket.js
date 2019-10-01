@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import { axiosWithoutAuth as axios } from '../utils/axiosConfig'
 
@@ -15,48 +15,43 @@ import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
 
 export default function NewTicket(props) {
+  const user_id = localStorage.getItem('user_id')
 
-    const user_id = localStorage.getItem('user_id')
+  const categories = ['JS', 'React', 'HTML/CSS', 'Node.js', 'Other']
 
-    const categories = [
-      'JS',
-      'React',
-      'HTML/CSS',
-      'Node.js',
-      'Other'
-    ]
+  const classes = useStyles()
 
-    const classes = useStyles()
+  const [formFields, setFormFields] = useState({
+    title: '',
+    description: '',
+    category: '',
+    user_id: user_id,
+  })
 
-    const [formFields, setFormFields] = useState({
-      title: '',
-      description: '',
-      category: '',
-      user_id: user_id
+  const handleChange = event => {
+    setFormFields({
+      ...formFields,
+      [event.target.name]: event.target.value,
     })
+  }
 
-    const handleChange = event => {
-      setFormFields({
-        ...formFields,
-        [event.target.name]: event.target.value
-      })
-    }
+  const handleSubmit = event => {
+    event.preventDefault()
 
-    const handleSubmit = event => {
+    axios()
+      .post('/tickets', formFields)
+      .then(res => props.history.push('/studentdashboard'))
+      .catch(err => console.log(err.response))
+  }
 
-      event.preventDefault()
-
-      axios()
-        .post('/tickets', formFields)
-        .then(res => props.history.push('/studentdashboard'))
-        .catch(err => console.log(err.response))
-    }
-
-    return (
-        <Container component='main' maxWidth='sm'>
+  return (
+    <div className={classes.height}>
+      <Container component='main' maxWidth='sm' className={classes.paper}>
         <CssBaseline />
         <div className={classes.paper}>
-            <Typography component='h1' variant='h5'>New Ticket</Typography>
+          <Typography component='h1' variant='h5'>
+            New Ticket
+          </Typography>
         </div>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -73,7 +68,7 @@ export default function NewTicket(props) {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField 
+              <TextField
                 name='description'
                 variant='outlined'
                 value={formFields.description}
@@ -99,7 +94,11 @@ export default function NewTicket(props) {
                 <option value='' />
                 {categories.map(cat => {
                   let catcap = cat.charAt(0).toUpperCase() + cat.slice(1)
-                  return <option key={cat} value={cat}>{catcap}</option>
+                  return (
+                    <option key={cat} value={cat}>
+                      {catcap}
+                    </option>
+                  )
                 })}
               </Select>
             </FormControl>
@@ -114,8 +113,9 @@ export default function NewTicket(props) {
             Submit
           </Button>
         </form>
-        </Container>
-    )
+      </Container>
+    </div>
+  )
 }
 
 // Set style theme for the form components
@@ -125,10 +125,16 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white,
     },
   },
+  height: {
+    height: '100vh',
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing(8, 2),
+    borderRadius: '5px',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   avatar: {
