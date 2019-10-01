@@ -3,7 +3,6 @@ import { axiosWithAuth as axios } from '../utils/axiosConfig'
 
 import OpenTicket from '../components/OpenTicket'
 import Card from '@material-ui/core/Card'
-import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -47,7 +46,7 @@ export default function HelperDashboard() {
 
   return (
     <>
-      <Navbar />
+      <Navbar allTickets={getAllTickets} myTickets={getMyTickets} />
       <Container
         component='main'
         maxWidth='lg'
@@ -55,22 +54,6 @@ export default function HelperDashboard() {
         style={{ margin: '6rem auto 0' }}
       >
         <CssBaseline />
-        <Button
-          onClick={e => getAllTickets(e)}
-          variant='contained'
-          color='secondary'
-          className={classes.buttons}
-        >
-          All Tickets
-        </Button>
-        <Button
-          onClick={e => getMyTickets(e)}
-          variant='contained'
-          color='secondary'
-          className={classes.buttons}
-        >
-          My Tickets
-        </Button>
         <Card className={classes.paper}>
           {tickets &&
             tickets.map((ticket, index) => {
@@ -97,6 +80,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   buttons: {
-    margin: theme.spacing(2, 1),
+    margin: theme.spacing(1, 1),
   },
 }))
