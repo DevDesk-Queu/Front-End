@@ -3,10 +3,8 @@ import { axiosWithAuth as axios } from '../utils/axiosConfig'
 
 import OpenTicket from '../components/OpenTicket'
 import Card from '@material-ui/core/Card'
-import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 export default function StudentDashboard() {
@@ -14,13 +12,11 @@ export default function StudentDashboard() {
   const [tickets, setTickets] = useState([])
   const user_id = localStorage.getItem('user_id')
 
-  console.log(localStorage)
-
   useEffect(() => {
-    getAllTickets()
+    getMyTickets()
   }, [])
 
-  const getAllTickets = () => {
+  const getMyTickets = () => {
     axios()
       .get(`users/${user_id}/tickets/`)
       .then(res => {
@@ -33,36 +29,17 @@ export default function StudentDashboard() {
 
   return (
     <>
-      <Navbar />
+      <Navbar createTicket={true} />
       <Container
         component='main'
         maxWidth='lg'
         className={classes.paper}
-        style={{ margin: '6rem auto 0' }}
+        style={{ margin: '1rem auto 0' }}
       >
-        <Link to='/newticket' style={{ textDecoration: 'none' }}>
-          <Button
-            variant='contained'
-            color='secondary'
-            className={classes.buttons}
-          >
-            Create Ticket
-          </Button>
-        </Link>
-
-        <Card className={classes.paper}>
+        <Card className={classes.cards}>
           {tickets &&
-            tickets.map(ticket => {
-              return (
-                <OpenTicket
-                  ticket={ticket}
-                  key={ticket.id}
-                  title={ticket.title}
-                  description={ticket.description}
-                  category={ticket.category}
-                  user_id={ticket.user_id}
-                />
-              )
+            tickets.map((ticket, index) => {
+              return <OpenTicket key={index} ticket={ticket} />
             })}
         </Card>
       </Container>
@@ -73,17 +50,23 @@ export default function StudentDashboard() {
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   paper: {
-    margin: theme.spacing(4, 0),
+    margin: theme.spacing(1, 0),
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  cards: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttons: {
-    margin: theme.spacing(2, 1)
-  }
+    margin: theme.spacing(2, 1),
+  },
 }))
